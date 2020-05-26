@@ -26,6 +26,7 @@ namespace ConsoleApp7
                 {
                     c++;
                 }
+                
             }
             
             if (c == 0)
@@ -38,6 +39,10 @@ namespace ConsoleApp7
                 a.Add(ReadLine());
                 WriteLine("введите дату рождения в виде( дд.мм.гггг");
                 a.Add(ReadLine());
+            }
+            else
+            {
+                WriteLine("данный id занят");
             }
         }
         public void cor(int[] id, int x)
@@ -69,6 +74,34 @@ namespace ConsoleApp7
         {
             a.Clear();
         }
+        public void all()
+        {
+            for (int i = 0; i < a.Count; i++)
+            {
+                Write(a[i]+" ");
+            }
+            WriteLine();
+        }
+        public void seach(int q)
+        {
+            if (q==ToInt32(a[0]))
+            {
+                for (int i = 0; i < a.Count; i++)
+                {
+                    Write(a[i]+"  ");
+                }
+            }
+        }
+        public void year(int q)
+        {
+            string s = a[3] + "";
+            string[] s1 = s.Split('.');
+            if (q==ToInt32(a[0]))
+            {
+                
+                WriteLine(2020-ToInt32(s1[2]));
+            }
+        }
     }
     class Program
     {
@@ -85,8 +118,9 @@ namespace ConsoleApp7
             }
             while (b)
             {
-                WriteLine("введите номер операции \n 1- добавление студента \n 2 - редактирование студента \n 3 - удаление студента \n 4 - закрыть программу");
+                WriteLine("введите номер операции \n 1- добавление студента \n 2 - редактирование студента \n 3 - удаление студента \n 4 -  вывод всех студентов \n 5 - вывод всей информации по студенту по его id \n 6 - вывод возраста студента студента по его id \n 7 - закрыть програму");
                 int i = ToInt32(ReadLine());
+                int q;
                 switch (i)
                 {
                     case 1: s[x].add(id,x);id[x] =ToInt32(s[x].a[0]) ;WriteLine(id[0]); x++; break;
@@ -111,7 +145,29 @@ namespace ConsoleApp7
                             WriteLine("список студентов пуст");
                         }
                         break;
-                    case 4: b=false;break;
+                    case 4:
+                        for (int j = 0; j < x; j++)
+                        {
+                            s[j].all();
+                        }
+                        break;
+                    case 5:
+                        q=ToInt32(ReadLine());
+                        for (int j = 0; j < x; j++)
+                        {
+
+                            s[j].seach(q);
+                        }
+                        break;
+                    case 6:
+                        q=ToInt32(ReadLine());
+                        for (int j = 0; j < x; j++)
+                        {
+
+                            s[j].year(q);
+                        }
+                        break;
+                    case 7: b=false;break;
                 }
                 
             }
